@@ -11,7 +11,6 @@ espacio entre palabra y palabra.
 """
 import pandas as pd
 
-
 def ingest_data():
 
     df = pd.read_fwf("clusters_report.txt",skiprows = 4,names = ["cluster", "cantidad _de_palabras_clave","porcentaje_de_palabras_clave", "principales_palabras_clave"])
@@ -28,5 +27,7 @@ def ingest_data():
         i+=1
     
     df = df.groupby(["cluster","cantidad _de_palabras_clave","porcentaje_de_palabras_clave"])["principales_palabras_clave"].apply(' '.join).reset_index()
-
+    df["cantidad _de_palabras_clave"]=df["cantidad _de_palabras_clave"].apply(lambda x: int(x))
+    df["porcentaje_de_palabras_clave"]=df["porcentaje_de_palabras_clave"].apply(lambda x: x.replace(",", "."))
+    df["porcentaje_de_palabras_clave"]=df["porcentaje_de_palabras_clave"].apply(lambda x: x[:len(x)-2])
     return df
