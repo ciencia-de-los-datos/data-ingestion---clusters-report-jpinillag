@@ -24,5 +24,6 @@ def ingest_data():
     df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: str(x))
     df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: x.replace("  ", " "))
     df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: x.replace("  ", " "))
+    df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: x.replace("  ", " "))
     df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: x.replace(".", ""))
     return df
