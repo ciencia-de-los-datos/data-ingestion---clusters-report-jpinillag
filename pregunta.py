@@ -13,11 +13,11 @@ import pandas as pd
 
 def ingest_data():
 
-    df = pd.read_fwf("clusters_report.txt",skiprows = 4,names = ["cluster", "cantidad _de_palabras_clave","porcentaje_de_palabras_clave", "principales_palabras_clave"])
+    df = pd.read_fwf("clusters_report.txt",skiprows = 4,names = ["cluster", "cantidad_de_palabras_clave","porcentaje_de_palabras_clave", "principales_palabras_clave"])
     df.fillna(method="ffill", inplace=True)
-    df = df.groupby(["cluster","cantidad _de_palabras_clave","porcentaje_de_palabras_clave"])["principales_palabras_clave"].apply(' '.join).reset_index()
+    df = df.groupby(["cluster","cantidad_de_palabras_clave","porcentaje_de_palabras_clave"])["principales_palabras_clave"].apply(' '.join).reset_index()
     df["cluster"]=df["cluster"].apply(lambda x: int(x))
-    df["cantidad _de_palabras_clave"]=df["cantidad _de_palabras_clave"].apply(lambda x: int(x))
+    df["cantidad_de_palabras_clave"]=df["cantidad_de_palabras_clave"].apply(lambda x: int(x))
     df["porcentaje_de_palabras_clave"]=df["porcentaje_de_palabras_clave"].apply(lambda x: x.replace(",", "."))
     df["porcentaje_de_palabras_clave"]=df["porcentaje_de_palabras_clave"].apply(lambda x: x[:len(x)-2])
     df["porcentaje_de_palabras_clave"]=df["porcentaje_de_palabras_clave"].apply(lambda x: float(x))
