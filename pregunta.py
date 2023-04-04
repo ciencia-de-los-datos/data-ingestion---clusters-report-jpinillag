@@ -22,4 +22,7 @@ def ingest_data():
     df["porcentaje_de_palabras_clave"]=df["porcentaje_de_palabras_clave"].apply(lambda x: x[:len(x)-2])
     df["porcentaje_de_palabras_clave"]=df["porcentaje_de_palabras_clave"].apply(lambda x: float(x))
     df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: str(x))
+    df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: x.replace("  ", " "))
+    df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: x.replace("  ", " "))
+    df["principales_palabras_clave"]=df["principales_palabras_clave"].apply(lambda x: x.replace(".", ""))
     return df
